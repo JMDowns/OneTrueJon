@@ -22,4 +22,11 @@ jobs:
         run: bun install
       - run: bun run test
       - run: bun run build
+      - run: docker build --pull --rm -f "Dockerfile" -t onetruejon:latest "."
+      - run: docker save onetruejon:latest | gzip > docker-image.tar.gz
+      - name: Upload docker image for website
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: docker-image.tar.gz
       
