@@ -24,11 +24,16 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
       - run: bun run test
   build:
     needs: run-tests
     runs-on: ubuntu-latest
     steps:
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
       - uses: actions/checkout@v4
       - run: bun run build
