@@ -10,4 +10,4 @@ jobs:
         with:
           bun-version: latest
       - run: bun install -g jest
-      - run: jest -v
+      - run: jest --version
