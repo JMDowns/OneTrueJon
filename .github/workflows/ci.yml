@@ -2,7 +2,7 @@ name: ci
 run-name: ${{ github.actor }} is testing the website
 on: [push]
 jobs:
-  ci:
+  install-deps:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +20,18 @@ jobs:
       - if: ${{ steps.cache-bun.outputs.cache-hit != 'true' }}
         name: Install bun modules
         run: bun install
+  test-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+      - uses: actions/cache/restore@v3
+        id: cache
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-${{ hashFiles('**/bun.lockb') }}
       - run: bun run test
       - run: bun run build
       - run: docker build --pull --rm -f "Dockerfile" -t onetruejon:latest "."
