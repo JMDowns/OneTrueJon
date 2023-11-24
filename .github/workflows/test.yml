@@ -1,5 +1,5 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+name: test
+run-name: ${{ github.actor }} is testing the website
 on: [push]
 jobs:
   check-jest-version:
@@ -9,4 +9,5 @@ jobs:
       - uses: oven-sh/setup-bun@v1
         with:
           bun-version: latest
+      - run: bun install 
       - run: bun run test
