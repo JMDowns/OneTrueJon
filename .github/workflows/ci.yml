@@ -16,7 +16,7 @@ jobs:
           cache-name: cache-bun-modules
         with:
           path: ~/.bun/install/cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/bun.lockb') }}
       - if: ${{ steps.cache-bun.outputs.cache-hit != 'true' }}
         name: Install bun modules
         run: bun install
