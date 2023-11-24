@@ -1,0 +1,45 @@
+name: test
+run-name: ${{ github.actor }} is testing the website
+on: [push]
+jobs:
+  install:
+    runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - uses: oven-sh/setup-bun@v1
+          with:
+            bun-version: latest
+        - name: Cache bun modules
+          id: cache-bun
+          uses: actions/cache@v3
+          env:
+            cache-name: cache-bun-modules
+          with:
+            path: ~/.bun/install/cache
+            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        - if: ${{ steps.cache-bun.outputs.cache-hit != 'true' }}
+          name: Install bun modules
+          ontinue-on-error: true
+          run: bun install
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-deps
+          path: build-dependencies
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download build dependencies
+        uses: actions/download-artifact@v3
+        with:
+          name: build-deps
+      - run: bun run test
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download build dependencies
+        uses: actions/download-artifact@v3
+        with:
+          name: build-deps
+      - run: bun run build
