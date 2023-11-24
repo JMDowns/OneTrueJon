@@ -2,7 +2,7 @@ name: test
 run-name: ${{ github.actor }} is testing the website
 on: [push]
 jobs:
-  check-jest-version:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
