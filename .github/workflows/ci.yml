@@ -21,6 +21,7 @@ jobs:
         name: Install bun modules
         run: bun install
   test-build:
+    needs: install-deps
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
