@@ -19,12 +19,12 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - if: ${{ steps.cache-bun.outputs.cache-hit != 'true' }}
         name: Install bun modules
-        ontinue-on-error: true
+        continue-on-error: true
         run: bun install
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-deps
-        path: build-dependencies
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-deps
+          path: build-dependencies
   run-tests:
     runs-on: ubuntu-latest
     steps:
