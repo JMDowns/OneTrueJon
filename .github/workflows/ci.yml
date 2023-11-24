@@ -24,7 +24,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: build-deps
-          path: build-dependencies
+          path: ~/.bun/install/cache
   run-tests:
     needs: install
     runs-on: ubuntu-latest
