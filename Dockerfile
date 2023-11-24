@@ -4,6 +4,6 @@ COPY . .
 
 RUN bun install
 
-CMD ["bun", "run", "dev", "--host"]
+CMD ["bun", "run", "dev"]
 
-EXPOSE 5173
+EXPOSE 3000
