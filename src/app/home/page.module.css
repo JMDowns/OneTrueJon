@@ -1,0 +1,31 @@
+.div {
+    margin: auto;
+    text-align: center;
+    padding: 60px;
+}
+
+.div2 {
+    background-color: #ffffff2d;
+    outline-style: solid;
+    outline-color: #000;
+    color: #fff;
+}
+
+.div3 {
+    opacity: 1;
+}
+
+.pLight {
+    font-family: Brush Script MT,cursive;
+    font-size: 100px;
+    color: white;
+    -webkit-text-stroke: 2px black;
+}
+
+.letterSpan {
+    color: rgba(165, 93, 0, 0.445);
+}
+
+.jonathanSpan {
+    color: red;
+}
