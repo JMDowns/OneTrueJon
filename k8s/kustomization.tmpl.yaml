@@ -4,6 +4,6 @@ resources:
 - service.yaml
 
 images:
-- name: amazonaws.com/kubernetes-github-actions
+- name: 637512834136.dkr.ecr.us-east-2.amazonaws.com/one-true-jon-website
   newName: ${ECR_REPOSITORY}
   newTag: ${IMAGE_TAG}
