@@ -3,7 +3,8 @@ FROM oven/bun:latest
 COPY . .
 
 RUN bun install
+RUN bun run build
 
-CMD ["bun", "run", "dev"]
+CMD ["bun", "run", "start"]
 
 EXPOSE 3000
