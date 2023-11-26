@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: website
+    namespace: one-true-jon-website
+    labels:
+        app: website
+spec:
+    type: LoadBalancer
+    selector:
+        app: website
+    ports:
+    - port: 3000
+      protocol: TCP  
+      targetPort: 3000
