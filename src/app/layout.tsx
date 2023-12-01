@@ -13,6 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 
 import styles from './page.module.css'
+import "reflect-metadata";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,6 +27,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  
   return (
     <html lang="en" className={styles.html}>
       <body className={styles.body}>

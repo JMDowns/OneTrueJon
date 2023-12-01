@@ -1,8 +1,0 @@
-{
-  "/_not-found": "app/_not-found.js",
-  "/etymology/page": "app/etymology/page.js",
-  "/home/page": "app/home/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/login/page": "app/login/page.js",
-  "/users/page": "app/users/page.js"
-}

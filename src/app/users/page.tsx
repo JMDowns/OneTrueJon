@@ -6,36 +6,49 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 import styles from './page.module.css';
 import Typography from '@mui/material/Typography';
+import "reflect-metadata";
+import { container } from 'tsyringe';
+import { UserRepository } from '../userRepository';
 
-export default function Users() {
-    return (
-        <Grid container sx={{padding: '10px'}}>
-            <Grid xs={4}>
-                <Card sx={{ display: 'flex' }}>
+function GetUserCards() {
+    const userRepository = container.resolve(UserRepository);
+    
+    return userRepository.GetUsers().map(user => 
+        {
+            const hobbyList = user.hobbies.map(hobby => <li key={hobby}>{hobby}</li>);
+
+            return <Grid xs={4}>
+                <Card id={"user-card-" + user.name} key={user.name} sx={{ display: 'flex' }}>
                     <Box>
                         <CardMedia
                             height="200"
                             component="img"
-                            image="/images/jon.jpg"
-                            alt="Jonathan Downs"
+                            image={user.imageLink}
+                            alt={user.name}
                         />
                     </Box>
                     
                     <Box>
                         <CardContent sx={{width: 300}}>
-                            <Typography className={styles.name}>Jonathan Downs</Typography>
+                            <Typography className={styles.name}>{user.name}</Typography>
                             <p>Profession:</p>
-                                <p className={styles.pStyle}>Software Engineering</p>
+                                <p className={styles.pStyle}>{user.profession}</p>
                             <p>Hobbies:</p>
                             <ul className={styles.ulStyle}>
-                                <li>Programming</li>
-                                <li>Reading</li>
-                                <li>Video Games</li>
+                                {hobbyList}
                             </ul>
                         </CardContent>
                     </Box>
                 </Card>
             </Grid>
+        }
+    )
+}
+
+export default function Users() {
+    return (
+        <Grid container sx={{padding: '10px'}}>
+            {GetUserCards()}
         </Grid>
     )
 }
