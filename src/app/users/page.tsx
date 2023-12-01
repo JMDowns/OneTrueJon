@@ -1,14 +1,13 @@
+import "reflect-metadata";
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
-
 import styles from './page.module.css';
 import Typography from '@mui/material/Typography';
-import "reflect-metadata";
 import { container } from 'tsyringe';
-import { UserRepository } from '../userRepository';
+import { UserRepository } from './userRepository';
 
 function GetUserCards() {
     const userRepository = container.resolve(UserRepository);

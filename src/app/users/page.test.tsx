@@ -1,10 +1,9 @@
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import '@testing-library/jest-dom'
 import Users from './page';
+import { test, expect } from 'bun:test';
 
 test('Given users should construct cards', async () => {
-    render(Users());
-
+    render(Users())
     expect(true).toBe(true);
 });

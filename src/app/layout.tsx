@@ -1,3 +1,5 @@
+import "reflect-metadata";
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -13,7 +15,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 
 import styles from './page.module.css'
-import "reflect-metadata";
 
 const inter = Inter({ subsets: ['latin'] })
 
