@@ -54,6 +54,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_SERVER_PORT }}
           script: |
+            cd /home/${{secrets.SSH_SERVER_USER}}/onetruejon/website
             OLDID=$(echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker ps | grep "jmdowns00/website:latest" | egrep -o "[0-9a-f]{12}")
             echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose up -d --scale website=2 --no-recreate
             sleep 15
