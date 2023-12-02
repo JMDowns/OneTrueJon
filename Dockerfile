@@ -1,18 +1,15 @@
-FROM oven/bun:latest
+ARG NODE_VERSION=20
 
-COPY bun.lockb .
-COPY bunfig.toml .
-COPY happydom.ts .
-COPY next-env.d.ts .
-COPY next.config.js .
-COPY package.json .
+FROM node:${NODE_VERSION}
 
-COPY public/ .
-COPY src/ .
+COPY . .
 
-ENV NODE_ENV 'production'
-RUN bun install
+RUN curl -fsSL https://bun.sh/install | BUN_INSTALL=/usr bash
 
-CMD ["bun", "run", "dev"]
+RUN /usr/bin/bun install
+
+RUN /usr/bin/bun run build
+
+CMD ["/usr/bin/bun", "run", "start"]
 
 EXPOSE 3000
