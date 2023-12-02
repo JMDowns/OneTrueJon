@@ -60,4 +60,5 @@ jobs:
             echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose up -d --scale website=2 --no-recreate
             sleep 15
             echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker stop $OLDID
+            echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker compose rm
             echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose up -d --scale website=1 --no-recreate
