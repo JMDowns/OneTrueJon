@@ -2,11 +2,6 @@ name: ci
 run-name: ${{ github.actor }} is testing the website
 on: [push]
 
-# env: 
-#   AWS_REGION: us-east-2
-#   ECR_REPOSITORY: OneTrueJon
-#   SHORT_SHA: $(echo ${{ github.sha }} | cut -c 1-8)
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -17,9 +12,31 @@ jobs:
           bun-version: latest
       - run: bun install
       - run: bun run test
+
+  build-image:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log in to Dockerhub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Build and Push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/website:latest
   
   deploy:
-    needs: test
+    needs: build-image
     runs-on: ubuntu-latest
     steps:
       - name: Install SSH Key
@@ -33,44 +50,3 @@ jobs:
         run: touch file.txt
       - name: Deploy with rsync
         run: rsync -avz -e 'ssh -p ${{secrets.SSH_SERVER_PORT}}' file.txt ${{secrets.SSH_SERVER_USER}}@${{secrets.SSH_SERVER_IP}}:/home/${{secrets.SSH_SERVER_USER}}/ 
-          
-        
-
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@v1
-#         with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: ${{ env.AWS_REGION }}
-
-#       - name: Login to Amazon ECR
-#         id: login-ecr
-#         uses: aws-actions/amazon-ecr-login@v1
-        
-#       # - name: Build, tag, and push the image to Amazon ECR
-#       #   id: build-image
-#       #   env:
-#       #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#       #     ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
-#       #     IMAGE_TAG: "latest"
-
-#       #   run: |
-#       #     # Build a docker container and push it to ECR 
-#       #     docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-#       #     echo "Pushing image to ECR..."
-#       #     docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-#       #     echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-
-#       - name: Install and configure kubectl
-#         run: |
-#           VERSION=$(curl --silent https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-#           curl https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/linux/amd64/kubectl \
-#               --progress-bar \
-#               --location \
-#               --remote-name
-#           chmod +x kubectl
-#           sudo mv kubectl /usr/local/bin/
-#           echo ${{ secrets.KUBECONFIG }} | base64 --decode > kubeconfig.yaml
-
-#       - name: Deploy
-#         run: echo "Hello World!"
