@@ -36,7 +36,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/website:latest
   
   deploy:
-    needs: build-image
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Install SSH Key
@@ -51,5 +51,6 @@ jobs:
         with:
           host: ${{ secrets.SSH_SERVER_IP }}
           username: ${{ secrets.SSH_SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_SERVER_PORT }}
           script: whoami
