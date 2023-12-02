@@ -46,7 +46,10 @@ jobs:
           known_hosts: "Dummy value, will add this next step"
       - name: Adding Known Hosts
         run: ssh-keyscan -t ed25519 -p ${{secrets.SSH_SERVER_PORT}} -H ${{ secrets.SSH_SERVER_IP }} >> ~/.ssh/known_hosts
-      - name: Make dummy file
-        run: touch file.txt
-      - name: Deploy with rsync
-        run: rsync -avz -e 'ssh -p ${{secrets.SSH_SERVER_PORT}}' file.txt ${{secrets.SSH_SERVER_USER}}@${{secrets.SSH_SERVER_IP}}:/home/${{secrets.SSH_SERVER_USER}}/ 
+      - name: SSH into server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_SERVER_IP }}
+          username: ${{ secrets.SSH_SERVER_USER }}
+          port: ${{ secrets.SSH_SERVER_PORT }}
+          script: whoami
