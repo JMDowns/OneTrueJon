@@ -55,7 +55,7 @@ jobs:
           port: ${{ secrets.SSH_SERVER_PORT }}
           script: |
             OLDID=$(echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker ps | grep "jmdowns00/website:latest" | egrep -o "[0-9a-f]{12}")
-            sudo docker-compose up -d --scale website=2 --no-recreate
+            echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose up -d --scale website=2 --no-recreate
             sleep 15
-            sudo docker stop $OLDID
-            sudo docker-compose up -d --scale website=1 --no-recreate
+            echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker stop $OLDID
+            echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose up -d --scale website=1 --no-recreate
