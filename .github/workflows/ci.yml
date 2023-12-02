@@ -53,4 +53,4 @@ jobs:
           username: ${{ secrets.SSH_SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_SERVER_PORT }}
-          script: sudo docker ps | grep "jmdowns00/website:latest" | egrep -o "[0-9a-f]{12}"
+          script: echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker ps | grep "jmdowns00/website:latest" | egrep -o "[0-9a-f]{12}"
