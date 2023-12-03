@@ -25,7 +25,6 @@ jobs:
       - name: Build and Push
         run: |
           echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker build -t jmdowns00/website:latest .
-          echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker push jmdowns00/website:latest
   
   deploy:
     needs: build-image
@@ -47,7 +46,6 @@ jobs:
           port: ${{ secrets.SSH_SERVER_PORT }}
           script: |
             cd /home/${{secrets.SSH_SERVER_USER}}/onetruejon/website
-            echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose pull 
             OLDID=$(echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker ps | grep "jmdowns00/website:latest" | egrep -o "[0-9a-f]{12}")
             echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker-compose up -d --scale website=2 --no-recreate
             sleep 15
