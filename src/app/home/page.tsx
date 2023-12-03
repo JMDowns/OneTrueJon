@@ -8,7 +8,7 @@ export default function Home() {
         <div className={styles.div}>
             <div className={styles.div2}>
                 <div className={styles.div3}>
-                    <p className={styles.pLight}>An <span className={styles.letterSpan}>O</span> in the <span className={styles.letterSpan}>-than</span> for those under the sky,</p>
+                    <p className={styles.pLight}>A <span className={styles.letterSpan}>O</span> in the <span className={styles.letterSpan}>-than</span> for those under the sky,</p>
                     <p className={styles.pLight}>An <span className={styles.letterSpan}>H</span> in the <span className={styles.letterSpan}>John-</span> for those in the stone.</p>
                     <p className={styles.pLight}>Both for those mortals doomed to die,</p>
                     <p className={styles.pLight}>Neither <span className={styles.letterSpan}>H</span> nor <span className={styles.letterSpan}>O</span> for those on the throne,</p>
