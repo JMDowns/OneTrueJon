@@ -29,8 +29,8 @@ jobs:
       
       - name: Build and Push
         run: |
-          docker build -t website:latest .
-          docker push website:latest
+          echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker build -t website:latest .
+          echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker push website:latest
   
   deploy:
     needs: build-image
