@@ -24,7 +24,7 @@ jobs:
         run: echo ${{secrets.DOCKERHUB_ACCESS_TOKEN}} | docker login -u ${{secrets.DOCKERHUB_USERNAME}} --password-stdin	 
       - name: Build and Push
         run: |
-          echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker build -t website:latest .
+          echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker build -t jmdowns00/website:latest .
           echo ${{secrets.SSH_SUDO_PASSWD}} | sudo -S docker push jmdowns00/website:latest
   
   deploy:
