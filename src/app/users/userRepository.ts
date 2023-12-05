@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { injectable } from 'tsyringe';
 import { User } from "./user";
 

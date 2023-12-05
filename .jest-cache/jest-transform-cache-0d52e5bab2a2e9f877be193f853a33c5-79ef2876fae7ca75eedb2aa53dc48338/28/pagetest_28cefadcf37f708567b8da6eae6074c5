@@ -1,0 +1,13 @@
+b794c746ed363c170cbe3e648af19e26
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = require("@testing-library/react");
+const page_1 = __importDefault(require("./page"));
+test('Given users should construct cards', async () => {
+    (0, react_1.render)((0, page_1.default)());
+    expect(true).toBe(true);
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJmaWxlIjoiL2hvbWUvam9uYXRoYW4vZGV2L3JlYWN0L09uZVRydWVKb24vc3JjL2FwcC91c2Vycy9wYWdlLnRlc3QudHN4IiwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsa0RBQXNEO0FBRXRELGtEQUEyQjtBQUUzQixJQUFJLENBQUMsb0NBQW9DLEVBQUUsS0FBSyxJQUFJLEVBQUU7SUFDbEQsSUFBQSxjQUFNLEVBQUMsSUFBQSxjQUFLLEdBQUUsQ0FBQyxDQUFBO0lBQ2YsTUFBTSxDQUFDLElBQUksQ0FBQyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUM1QixDQUFDLENBQUMsQ0FBQyIsIm5hbWVzIjpbXSwic291cmNlcyI6WyIvaG9tZS9qb25hdGhhbi9kZXYvcmVhY3QvT25lVHJ1ZUpvbi9zcmMvYXBwL3VzZXJzL3BhZ2UudGVzdC50c3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHtyZW5kZXIsIHNjcmVlbn0gZnJvbSAnQHRlc3RpbmctbGlicmFyeS9yZWFjdCc7XG5pbXBvcnQgdXNlckV2ZW50IGZyb20gJ0B0ZXN0aW5nLWxpYnJhcnkvdXNlci1ldmVudCc7XG5pbXBvcnQgVXNlcnMgZnJvbSAnLi9wYWdlJztcblxudGVzdCgnR2l2ZW4gdXNlcnMgc2hvdWxkIGNvbnN0cnVjdCBjYXJkcycsIGFzeW5jICgpID0+IHtcbiAgICByZW5kZXIoVXNlcnMoKSlcbiAgICBleHBlY3QodHJ1ZSkudG9CZSh0cnVlKTtcbn0pOyJdLCJ2ZXJzaW9uIjozfQ==
