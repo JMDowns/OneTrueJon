@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import './globals.css';
 import styles from './page.module.css'
-import WebsiteLayout from './websitelayout';
+import WebsiteLayout from './websiteLayout';
 
 export default function RootLayout({
   children
