@@ -12,6 +12,7 @@ export class UserRepository {
     GetUsers(): User[] {
         return [
             {
+                userId: 1,
                 name: "Jonathan Downs",
                 imageLink: "/images/jon.jpg",
                 profession: "Software Engineering",
@@ -22,6 +23,7 @@ export class UserRepository {
                 ]
             } as User,
             {
+                userId: 2,
                 name: "Joobnoobthoobn Doobwns",
                 imageLink: "/images/jon.jpg",
                 profession: "Soobftwoobroob Oobngoobnooboobroobng",
