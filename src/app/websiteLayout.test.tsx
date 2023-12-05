@@ -3,7 +3,7 @@ import { screen, render } from "@testing-library/react";
 import WebsiteLayout from "./websiteLayout";
 
 const mockRouter = {
-  push: jest.fn() // the component uses `router.push` only
+  push: jest.fn()
 };
 
 jest.mock('next/navigation', () => ({
@@ -11,9 +11,6 @@ jest.mock('next/navigation', () => ({
 }))
 
 describe('Given WebsiteLayout', () => {
-    beforeEach(() => {
-      
-    });
     [
       {name: "Users", url: "/users"},
       {name: "Etymology", url: "/etymology"},

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "info": "next info",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
