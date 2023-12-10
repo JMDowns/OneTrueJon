@@ -17,7 +17,7 @@ function GetUserCards() {
             const hobbyList = user.hobbies.map(hobby => <li key={hobby}>{hobby}</li>);
 
             return <Grid key={user.userId} xs={4}>
-                <Card id={`user-card-${user.name}`} key={user.userId} sx={{ display: 'flex' }}>
+                <Card data-testid={`user-card-${user.userId}`} key={user.userId} sx={{ display: 'flex' }}>
                     <Box>
                         <CardMedia
                             height="200"
@@ -29,7 +29,7 @@ function GetUserCards() {
                     
                     <Box>
                         <CardContent sx={{width: 300}}>
-                            <Typography className={styles.name}>{user.name}</Typography>
+                            <Typography className={styles.name}>{user.name} ({user.userId})</Typography>
                             <p>Profession:</p>
                                 <p className={styles.pStyle}>{user.profession}</p>
                             <p>Hobbies:</p>

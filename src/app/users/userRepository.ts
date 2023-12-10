@@ -5,10 +5,6 @@ import { User } from "./user";
 
 @injectable()
 export class UserRepository {
-    constructor() {
-        
-    }
-
     GetUsers(): User[] {
         return [
             {
